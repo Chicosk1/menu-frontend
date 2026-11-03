@@ -5,8 +5,14 @@ import { SpotDialog } from "./spot-dialog";
 
 export function SpotButton() {
 
-  const [dialogOpen, setDialogOpen] = React.useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
+  const [selectedSpot, setSelectedSpot] = useState<SpotDTO | null>();
+
+  function handleSelect(spot: SpotDTO) {
+    localStorage.setItem('spot', JSON.Stringfy(spot));
+    setSelectedSpot(spot);
+  }
 
   return (
     <div className="flex items-center justify-center">
@@ -16,9 +22,9 @@ export function SpotButton() {
         onClick={() => setDialogOpen(true)}
         >
         <MapPin className="size-6" />
-        Selecionar mesa
+        { selectedSpot ? selectedSpot.name : 'Selecionar Mesa' }
       </Button>
-      <SpotDialog open={dialogOpen} />
+      <SpotDialog open={dialogOpen} onSelect={handleSelect} />
     </div>
-  );
+  )
 }
