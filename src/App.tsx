@@ -1,9 +1,14 @@
-import { SpotDialog } from "./cases/spots/components/spot-dialog"
+import { CategoryNav } from "./cases/categories/components/category-nav"
+import { Header } from "./components/layout/header"
 
 function App() {
+
   return (
     <>
-      <SpotDialog />
+      <Header />
+      <CategoryNav />
     </>
   )
 }
+
+export default App
