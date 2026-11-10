@@ -1,10 +1,14 @@
-import { Link } from "react-router-dom"
-import { useCategories } from "../hooks/use-category"
-import { cn } from "cn"
-import { Utensils } from "lucide-react"
+import { cn } from "cn";
+import { Utensils } from "lucide-react";
+import { Link, useSearchParams } from "react-router-dom";
+import { useCategories } from "../hooks/use-category";
 
 export function CategoryNav() {
- const { data: categories = []} = useCategories()
+    
+    const [searchParams] = useSearchParams();
+    const selectedCategoryId = searchParams.get('categoryId');
+ 
+    const { data: categories = []} = useCategories()
  
     return (
         <nav className="w-full">
@@ -13,10 +17,15 @@ export function CategoryNav() {
                     <li key={category.id} className="relative">
                     <Link to={`/products?categoryId=${category.id}`}
                     className={cn(
-                        'relative flex w-full items-center  gap-3 px-5 py-5 font-menu text-lg font-semibold uppercase tracking-tight border-xl border-transparent transition-colors duration-200 hover:z-10 hover:text-[#886A2C]'
+                        'relative flex w-full items-center  gap-3 px-5 py-5 font-menu text-lg font-semibold uppercase tracking-tight border-xl border-transparent transition-colors duration-200 hover:z-10 hover:text-[#886A2C]',
+                        selectedCategoryId === category.id ? ['border-[#886A2C]', 'bg-primary/5', 'text-[#886A2C]'] : ['text-foreground', 'border-b-border/60']
                     )}
                     >
-                        {category.icon ? (<span>ICON</span>) : (<Utensils className="size-10 text-brand"/>) }
+                        {category.icon ? 
+                            (<img src={category.icon} alt={category.name} className="size-10" />) 
+                                :
+                            (<Utensils className="size-10 text-brand"/>) }
+
                         <span className="leading-tight"> {category.name} </span>
                     </Link>
 
