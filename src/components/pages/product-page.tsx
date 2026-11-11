@@ -12,12 +12,11 @@ export function ProductPage() {
 
     return (
         <div className="flex flex-col gap-6">
-            <h2 className="text-2xl font-semibold">Categorias</h2>
-            {selectedCategory && (
+            <h2 className="text-2xl font-semibold">{selectedCategory && (
                 <div>
                     <h3 className="text-xl font-medium">{selectedCategory.name}</h3>
                 </div>
-            )}
+            )}</h2>
         </div>
     )
 }
