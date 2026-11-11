@@ -1,7 +1,7 @@
-import { api } from '@/lib/axios'
-import type { ProductDTO } from '../dtos/product.dto'
+import { api } from "@/lib/axios"
+import type { ProductDTO } from "../dtos/product.dto"
 
-const ENDPOINT = '/products'
+const ENDPOINT = "/products"
 
 export const ProductService = {
   async listAll(): Promise<ProductDTO[]> {
@@ -10,7 +10,10 @@ export const ProductService = {
   },
 
   async findOne(id: string): Promise<ProductDTO> {
-    const result = await api.get<ProductDTO>(`${ENDPOINT}/${id}`)
+    const result = await api.get<ProductDTO>(
+      `${ENDPOINT}/${id}`,
+    )
+
     return result.data
   },
 }
